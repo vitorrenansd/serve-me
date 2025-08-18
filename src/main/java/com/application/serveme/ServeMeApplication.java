@@ -1,4 +1,4 @@
-package com.vitorrenansd.serveme;
+package com.application.serveme;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
