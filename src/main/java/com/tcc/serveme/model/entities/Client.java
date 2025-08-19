@@ -1,4 +1,4 @@
-package com.model.entities;
+package com.tcc.serveme.model.entities;
 
 public class Client {
 

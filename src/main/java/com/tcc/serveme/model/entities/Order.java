@@ -1,6 +1,6 @@
-package com.model.entities;
+package com.tcc.serveme.model.entities;
 
-import com.model.enums.Table;
+import com.tcc.serveme.model.enums.Table;
 
 public class Order {
 

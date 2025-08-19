@@ -1,8 +1,9 @@
-package com.model.entities;
+package com.tcc.serveme.model.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.model.enums.Status;
+
+import com.tcc.serveme.model.enums.Status;
 
 public class OrderTicket {
 

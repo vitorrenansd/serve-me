@@ -1,4 +1,4 @@
-package com.model.enums;
+package com.tcc.serveme.model.enums;
 
 public enum Table {
 
