@@ -1,4 +1,4 @@
-package com.model.exceptions;
+package com.tcc.serveme.model.exceptions;
 
 public class DomainException extends Exception{ 
 /* 
