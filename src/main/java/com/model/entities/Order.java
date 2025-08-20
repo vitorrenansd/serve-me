@@ -1,25 +1,13 @@
 package com.model.entities;
 
-import com.model.enums.Table;
-
 public class Order {
 
-    private Table table;
     private Product product;
     private Integer quantity;
 
-    public Order(Table table, Product product, Integer quantity) {
-        this.table = table;
+    public Order(Product product, Integer quantity) {
         this.product = product;
         this.quantity = quantity;
-    }
-
-    public Table getTable() {
-        return table;
-    }
-
-    public void setTable(Table table) {
-        this.table = table;
     }
 
     public Product getProduct() {
