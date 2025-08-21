@@ -8,12 +8,14 @@ import com.tcc.serveme.model.enums.Status;
 public class OrderTicket {
 
     private Integer id;
+    private Integer table;
     private Status status;
     private Client client;
     private List<Order> order = new ArrayList<>();
     
-    public OrderTicket(Integer id, Status status, Client client, List<Order> order) {
+    public OrderTicket(Integer id, Integer table, Client client, List<Order> order) {
         this.id = id;
+        this.table = table;
         this.status = Status.OPEN;
         this.client = client;
         this.order = order;
@@ -25,6 +27,14 @@ public class OrderTicket {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getTable() {
+        return table;
+    }
+
+    public void setTable(Integer table) {
+        this.table = table;
     }
 
     public Status getStatus() {
