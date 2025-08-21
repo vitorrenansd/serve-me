@@ -1,10 +1,10 @@
-package com.vitorrenansd.serveme;
+package com.tcc.serveme;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ServeMeApplicationTests {
+class ApplicationTest {
 
 	@Test
 	void contextLoads() {
