@@ -1,56 +1,33 @@
 package com.tcc.serveme.api.model;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 public class Order {
-    private int tableNumber;
-    private String waiter;
-    private List<OrderItem> items;
-    private String notes;
-    private LocalDateTime createdAt;
 
-    public int getTableNumber() {
-        return tableNumber;
+    private Product product;
+    private Integer quantity;
+
+    public Order(Product product, Integer quantity) {
+        this.product = product;
+        this.quantity = quantity;
     }
 
-    public void setTableNumber(int tableNumber) {
-        this.tableNumber = tableNumber;
+    public Product getProduct() {
+        return product;
     }
 
-    public String getWaiter() {
-        return waiter;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public void setWaiter(String waiter) {
-        this.waiter = waiter;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public List<OrderItem> getItems() {
-        return items;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public void addItem(OrderItem item){
-        items.add(item);
+    public Double subTotal(){
+        return quantity * product.getPrice();
     }
 
-    public void removeItem(OrderItem item){
-        items.remove(item);
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
 }
