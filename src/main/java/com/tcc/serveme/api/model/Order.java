@@ -30,8 +30,12 @@ public class Order {
         return items;
     }
 
-    public void setItems(List<OrderItem> items) {
-        this.items = items;
+    public void addItem(OrderItem item){
+        items.add(item);
+    }
+
+    public void removeItem(OrderItem item){
+        items.remove(item);
     }
 
     public String getNotes() {
