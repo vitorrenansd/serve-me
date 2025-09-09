@@ -17,9 +17,7 @@ public class OrderController {
     }
 
     @PostMapping("/send")
-    public OrderRequest send(@RequestBody OrderRequest request) {
-        // send order to backend
-        //return orderService.sendOrder(request)
-        return null;
+    public void send(@RequestBody OrderRequest request) { // change this method from void to OrderRequest when the API is done --Vitor Dias
+        orderService.sendOrder(request);
     }
 }
