@@ -20,4 +20,7 @@ public class OrderController {
     public void send(@RequestBody OrderRequest request) { // change this method from void to OrderRequest when the API is done --Vitor Dias
         orderService.sendOrder(request);
     }
+
+    //@GetMapping(/productsinfo)
+    //public void productsInfo() {}
 }
