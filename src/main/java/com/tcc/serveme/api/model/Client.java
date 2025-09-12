@@ -1,10 +1,14 @@
 package com.tcc.serveme.api.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Client {
 
     private String name;
 
-    public Client(String name) {
+     @JsonCreator
+    public Client(@JsonProperty("name") String name) {
         this.name = name;
     }
 

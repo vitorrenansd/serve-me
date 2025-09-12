@@ -1,5 +1,6 @@
 package com.tcc.serveme.api.dto;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.tcc.serveme.api.model.OrderTicket;
 
-public record OrderRequest(int tableNumber, String waiter, List<Integer> items, String notes) {}
+public record OrderRequest(String waiter, @JsonProperty("orderTicket") OrderTicket ordertTicket, String notes) {}

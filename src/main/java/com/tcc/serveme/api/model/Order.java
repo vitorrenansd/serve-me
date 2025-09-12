@@ -1,11 +1,15 @@
 package com.tcc.serveme.api.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Order {
 
     private Product product;
     private Integer quantity;
 
-    public Order(Product product, Integer quantity) {
+    @JsonCreator
+    public Order(@JsonProperty("product") Product product, @JsonProperty("quantity") Integer quantity) {
         this.product = product;
         this.quantity = quantity;
     }

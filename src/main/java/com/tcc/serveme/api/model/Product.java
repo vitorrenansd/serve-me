@@ -1,21 +1,25 @@
 package com.tcc.serveme.api.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Product {
 
-    protected String name;
+    protected String nameProduct;
     protected Double price;
     
-    public Product(String name, Double price) {
-        this.name = name;
+    @JsonCreator
+    public Product(@JsonProperty("nameProduct") String nameProduct, @JsonProperty("price") Double price) {
+        this.nameProduct = nameProduct;
         this.price = price;
     }
 
-    public String getName() {
-        return name;
+    public String getNameProduct() {
+        return nameProduct;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
     }
 
     public Double getPrice() {

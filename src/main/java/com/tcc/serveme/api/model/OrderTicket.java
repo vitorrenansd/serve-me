@@ -2,6 +2,8 @@ package com.tcc.serveme.api.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.tcc.serveme.api.model.enums.Status;
 
@@ -13,7 +15,13 @@ public class OrderTicket {
     private Client client;
     private List<Order> order = new ArrayList<>();
     
-    public OrderTicket(Integer id, Integer table, Client client, List<Order> order) {
+     @JsonCreator
+    public OrderTicket(
+        @JsonProperty("id") Integer id,
+        @JsonProperty("table") Integer table,
+        @JsonProperty("client") Client client,
+        @JsonProperty("order") List<Order> order
+    ) {
         this.id = id;
         this.table = table;
         this.status = Status.OPEN;
