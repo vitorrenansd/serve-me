@@ -84,6 +84,14 @@ public class OrderTicket {
     public void closeOrderticket(){
         status = Status.CLOSED;
     }
+
+    @Override
+    public String toString() {
+        return "OrderTicket [id = " + getId() + ", table = " + getTable() + ", status = " + getStatus() + ", client = " + getClient() + ", order = "
+                + getOrder() + "]";
+    }
+
+    
     
 
 }

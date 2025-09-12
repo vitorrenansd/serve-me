@@ -34,4 +34,11 @@ public class Order {
         return quantity * product.getPrice();
     }
 
+    @Override
+    public String toString() {
+        return "Order [product = " + getProduct() + ", quantity = " + getQuantity() + "]";
+    }
+
+    
+
 }
