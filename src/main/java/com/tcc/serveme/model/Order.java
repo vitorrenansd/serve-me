@@ -4,14 +4,16 @@ public class Order {
 
     private Product product;
     private Integer quantity;
+    private String notes;
 
-    public Order(Product product, Integer quantity) {
+    public Order(Product product, Integer quantity, String notes) {
         this.product = product;
         this.quantity = quantity;
+        this.notes = notes;
     }
 
     public Product getProduct() {
-        return product;
+        return this.product;
     }
 
     public void setProduct(Product product) {
@@ -26,8 +28,11 @@ public class Order {
         this.quantity = quantity;
     }
 
-    public Double subTotal(){
-        return quantity * product.getPrice();
+    public String getNotes() {
+        return notes;
     }
 
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }

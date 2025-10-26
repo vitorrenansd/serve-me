@@ -2,23 +2,32 @@ package com.tcc.serveme.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.tcc.serveme.model.enums.Status;
 
 public class OrderTicket {
 
     private Integer id;
     private Integer table;
-    private Status status;
-    private Client client;
+    private String waiter;
     private List<Order> order = new ArrayList<>();
+    private Status status;
     
-    public OrderTicket(Integer id, Integer table, Client client, List<Order> order) {
+    // Complete constructor (read from database)
+    public OrderTicket(Integer id, Integer table, String waiter, List<Order> order) {
         this.id = id;
         this.table = table;
-        this.status = Status.OPEN;
-        this.client = client;
+        this.waiter = waiter;
         this.order = order;
+        this.status = Status.OPEN;
+    }
+
+    // Constructor for new orders (without ID yet)
+    // OrderMapper will use that
+    public OrderTicket(Integer table, String waiter, List<Order> order) {
+        this.table = table;
+        this.waiter = waiter;
+        this.order = order;
+        this.status = Status.OPEN;
     }
 
     public Integer getId() {
@@ -45,12 +54,12 @@ public class OrderTicket {
         this.status = status;
     }
 
-    public Client getClient() {
-        return client;
+    public String getWaiter() {
+        return this.waiter;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setWaiter(String waiter) {
+        this.waiter = waiter;
     }
 
     public List<Order> getOrder() {
@@ -65,17 +74,7 @@ public class OrderTicket {
         order.remove(item);
     }
 
-    public Double calculateTotal(){
-        Double bill = 0.0;
-        for (Order o : order){
-            bill += o.subTotal();
-        }
-        return bill;
-    }
-
     public void closeOrderticket(){
         status = Status.CLOSED;
     }
-    
-
 }
