@@ -1,12 +1,12 @@
 package com.tcc.serveme.api.service;
 
-import com.tcc.serveme.api.dto.CustomerOrderRequest;
+import com.tcc.serveme.api.dto.OrderRequest;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomerOrderService {
+public class CustomerOrder {
     
-    public void sendOrder(CustomerOrderRequest request) {
+    public void sendOrder(OrderRequest request) {
         // Placeholder
         System.out.println(request);
     }
