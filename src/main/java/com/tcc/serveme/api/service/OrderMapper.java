@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class OrderMapper {
 
-    public static OrderTicket toEntity(OrderRequest dto) {
+    public static OrderTicket toEntity(CustomerOrderRequest dto) {
         OrderTicketRequest ticketDto = dto.orderTicket();
 
         List<Order> orders = ticketDto.order().stream()
