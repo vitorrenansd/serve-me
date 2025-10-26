@@ -1,4 +1,4 @@
-package com.tcc.serveme.model;
+package com.tcc.serveme.api.model;
 
 public class Item {
 

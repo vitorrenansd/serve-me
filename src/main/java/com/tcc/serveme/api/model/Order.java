@@ -1,8 +1,9 @@
-package com.tcc.serveme.model;
+package com.tcc.serveme.api.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.tcc.serveme.model.enums.Status;
+
+import com.tcc.serveme.api.model.enums.Status;
 
 public class Order {
 
