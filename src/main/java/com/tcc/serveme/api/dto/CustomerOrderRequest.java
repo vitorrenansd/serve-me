@@ -5,7 +5,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record OrderRequest(
+public record CustomerOrderRequest(
 
     @NotBlank(message = "Waiter is required")
     String waiter,
