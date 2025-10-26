@@ -1,7 +1,8 @@
 package com.tcc.serveme.api.service;
 
 import com.tcc.serveme.api.dto.*;
-import com.tcc.serveme.model.*;
+import com.tcc.serveme.api.model.*;
+
 import java.util.List;
 
 public class OrderMapper {
