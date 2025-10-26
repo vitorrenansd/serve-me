@@ -1,29 +1,22 @@
 package com.tcc.serveme.model;
 
 public class Product {
+    private String productId;
+    private Double price;
 
-    protected String name;
-    protected Double price;
-    
-    public Product(String name, Double price) {
-        this.name = name;
-        this.price = price;
+    public String getProductId() {
+        return this.productId;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public Double getPrice() {
-        return price;
+        return this.price;
     }
 
     public void setPrice(Double price) {
         this.price = price;
     }
-
 }
