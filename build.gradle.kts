@@ -20,8 +20,12 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.postgresql:postgresql:42.7.7")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
+	// Spring JDBC API
+	implementation("org.springframework.boot:spring-boot-starter-jdbc")
+	// H2 Database for tests
+	implementation("com.h2database:h2:2.4.240")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
