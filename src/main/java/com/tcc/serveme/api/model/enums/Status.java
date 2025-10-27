@@ -1,4 +1,4 @@
-package com.tcc.serveme.model.enums;
+package com.tcc.serveme.api.model.enums;
 
 public enum Status {
     OPEN,
