@@ -15,7 +15,7 @@ public class OrderMapper {
         );
     }
 
-    private static Item toEntity(OrderItems dto, Product product) {
+    public static Item toEntity(OrderItems dto, Product product) {
         return new Item(
             product, 
             dto.quantity(),
