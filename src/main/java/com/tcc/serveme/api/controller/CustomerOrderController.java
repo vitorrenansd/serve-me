@@ -2,7 +2,7 @@ package com.tcc.serveme.api.controller;
 
 import com.tcc.serveme.api.dto.OrderRequest;
 import com.tcc.serveme.api.service.CustomerOrder;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerOrderController {
     private final CustomerOrder orderService;
 
-    @Autowired
+    //@Autowired
     public CustomerOrderController(CustomerOrder orderService) {
         this.orderService = orderService;
     }
