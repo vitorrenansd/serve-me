@@ -8,7 +8,7 @@ public record OrderItems(
 
     @NotNull(message = "Product id is required")
     @Valid
-    String productId,
+    Long productId,
 
     @NotNull(message = "Quantity is required")
     @Min(value = 1, message = "Quantity must be at least 1")
