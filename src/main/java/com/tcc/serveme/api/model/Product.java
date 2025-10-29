@@ -6,6 +6,7 @@ public class Product {
     private Long productId;
     private String name;
     private BigDecimal price;
+    private String category;
     private boolean inactive;
 
     public Long getProductId() {
@@ -30,6 +31,14 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     @Override
