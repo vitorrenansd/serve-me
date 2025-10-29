@@ -4,4 +4,4 @@ CREATE TABLE product (
     price NUMERIC(12,2),
     category VARCHAR(50),
     inactive BOOLEAN
-);
+); // EDITAR DEPOIS: Passar a utilizar category como uma chave de outra tabela
