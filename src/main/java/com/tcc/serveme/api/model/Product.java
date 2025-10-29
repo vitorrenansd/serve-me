@@ -3,16 +3,17 @@ package com.tcc.serveme.api.model;
 import java.math.BigDecimal;
 
 public class Product {
-    private String productId;
+    private Long productId;
     private String name;
     private BigDecimal price;
+    private String category;
     private boolean inactive;
 
-    public String getProductId() {
+    public Long getProductId() {
         return this.productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
@@ -30,6 +31,14 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     @Override

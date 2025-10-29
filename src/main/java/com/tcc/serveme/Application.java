@@ -1,5 +1,3 @@
-package com.tcc.serveme;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -15,5 +13,6 @@ public class Application {
 
         System.out.println(pr.findById(2L));
         System.out.println(pr.findAll());
+		SpringApplication.run(Application.class, args);
 	}
 }
