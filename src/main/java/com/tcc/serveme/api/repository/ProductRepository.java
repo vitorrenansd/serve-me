@@ -29,7 +29,7 @@ public class ProductRepository {
     }
 
     public List<Product> findAll() {
-        String sql = "SELECT * FROM product";
+        String sql = "SELECT id, name, price, fk_category FROM product WHERE inactive = FALSE";
         return template.query(
             sql,
             new BeanPropertyRowMapper<>(Product.class));
