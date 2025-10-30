@@ -21,7 +21,7 @@ public class ProductRepository {
     }
 
     public Product findById(Long id) {
-        String sql = "SELECT * FROM product WHERE id = ?";
+        String sql = "SELECT id, name, price, fk_category FROM product WHERE id = ?";
         return template.queryForObject(
             sql,
             new BeanPropertyRowMapper<>(Product.class),
