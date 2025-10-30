@@ -6,7 +6,7 @@ public class Product {
     private Long id;
     private String name;
     private BigDecimal price;
-    private String category;
+    private Long fkCategory;
     private boolean inactive;
 
     public Long getProductId() {
