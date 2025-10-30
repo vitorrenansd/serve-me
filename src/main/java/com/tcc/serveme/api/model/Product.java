@@ -3,7 +3,7 @@ package com.tcc.serveme.api.model;
 import java.math.BigDecimal;
 
 public class Product {
-    private Long productId;
+    private Long id;
     private String name;
     private BigDecimal price;
     private String category;
