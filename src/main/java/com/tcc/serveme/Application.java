@@ -13,8 +13,9 @@ public class Application {
 
         ProductRepository pr = context.getBean(ProductRepository.class);
 
+		System.out.println("\nfindById() method");
         System.out.println(pr.findById(2L));
+		System.out.println("\nfindAll() method");
         System.out.println(pr.findAll());
-		SpringApplication.run(Application.class, args);
 	}
 }
