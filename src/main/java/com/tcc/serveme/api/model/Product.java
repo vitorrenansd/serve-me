@@ -9,12 +9,12 @@ public class Product {
     private Long fkCategory;
     private boolean inactive;
 
-    public Long getProductId() {
-        return this.productId;
+    public Long getid() {
+        return this.id;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setid(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -33,12 +33,20 @@ public class Product {
         this.price = price;
     }
 
-    public String getCategory() {
-        return category;
+    public Long getFkCategory() {
+        return fkCategory;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setFkCategory(Long fkCategory) {
+        this.fkCategory = fkCategory;
+    }
+
+    public boolean getInactive() {
+        return this.inactive;
+    }
+
+    public void setInactive(boolean inactive) {
+        this.inactive = inactive;
     }
 
     @Override
