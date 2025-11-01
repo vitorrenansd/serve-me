@@ -9,7 +9,7 @@ CREATE TABLE product (
     sku VARCHAR(20),
     name VARCHAR(40) NOT NULL,
     price NUMERIC(12,2) NOT NULL,
-    fk_category INT,
+    fk_category INT NOT NULL,
     inactive BOOLEAN,
 
     CONSTRAINT fk_product_category
