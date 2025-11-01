@@ -20,18 +20,16 @@ public class ProductRepository implements GenericRepository<Product, Long> {
         this.jdbc = jdbc;
     }
 
+    @Override
     public Product findById(Long id) {
-        String sql = "SELECT id, name, price, fk_category FROM product WHERE id = ?";
-        return template.queryForObject(
-            sql,
-            new BeanPropertyRowMapper<>(Product.class),
-            id);
+        String sql = "SELECT id, sku, name, price, fk_category FROM product WHERE id = ? AND inactive = FALSE";
+        List<Product> results = jdbc.query(sql, new BeanPropertyRowMapper<>(Product.class), id);
+        return results.isEmpty() ? null : results.get(0); // Return null if cant find a product
     }
 
+    @Override
     public List<Product> findAll() {
-        String sql = "SELECT id, name, price, fk_category FROM product WHERE inactive = FALSE";
-        return template.query(
-            sql,
-            new BeanPropertyRowMapper<>(Product.class));
+        String sql = "SELECT id, sku, name, price, fk_category FROM product WHERE inactive = FALSE";
+        return jdbc.query(sql, new BeanPropertyRowMapper<>(Product.class));
     }
 }
