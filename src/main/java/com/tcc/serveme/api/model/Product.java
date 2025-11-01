@@ -60,6 +60,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{id=" + id + ", name='" + name + '\'' + ", price=" + price + ", fk_category=" + fkCategory + ", inactive=" + inactive + "}\n";
+        return "Product{id=" + id + ", sku='" + sku + "', name='" + name + '\'' + ", price=" + price + ", fk_category=" + fkCategory + ", inactive=" + inactive + "}\n";
     }
 }
