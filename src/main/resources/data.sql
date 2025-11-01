@@ -1,9 +1,13 @@
 INSERT INTO category(id, name, inactive) VALUES
-(1, 'Porções', FALSE),
-(2, 'Bebidas', FALSE);
+(1, 'PORÇÕES', FALSE),
+(2, 'BEBIDAS', FALSE),
+(3, 'PASTEL P', FALSE),
+(4, 'PASTEL G', FALSE);
 
-INSERT INTO product(id, name, price, fk_category, inactive) VALUES
-(1, 'Batata frita', 20.49, 1, FALSE),
-(2, 'Coca-cola Zero 600ml', 5.99, 2, FALSE),
-(3, 'Coca-cola 600ml', 5.99, 2, FALSE),
-(4, 'Pastel 4 queijos', 28.99, 1, TRUE);
+INSERT INTO product(sku, name, price, fk_category, inactive) VALUES
+('BATF1', 'BATATA FRITA 500G', 20.49, 1, FALSE),
+('BATF2', 'BATATA FRITA 1KG', 45.99, 1, FALSE),
+('', 'COCA-COLA ZERO 600ML', 5.99, 2, FALSE),
+('', 'COCA-COLA 600ML', 5.99, 2, FALSE),
+('P81P', 'PASTEL 4 QUEIJOS', 19.99, 3, FALSE),
+('P81G', 'PASTEL 4 QUEIJOS', 28.99, 4, TRUE);
