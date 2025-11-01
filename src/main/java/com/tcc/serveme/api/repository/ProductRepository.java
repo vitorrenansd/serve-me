@@ -32,4 +32,22 @@ public class ProductRepository implements GenericRepository<Product, Long> {
         String sql = "SELECT id, sku, name, price, fk_category FROM product WHERE inactive = FALSE";
         return jdbc.query(sql, new BeanPropertyRowMapper<>(Product.class));
     }
+
+    @Override
+    public int save(Product product) {
+        String sql = "INSERT INTO product(sku, name, price, fk_category) VALUES (?, ?, ?, ?)";
+        return jdbc.update(sql, product.getSku(), product.getName(), product.getPrice(), product.getFkCategory());
+    }
+
+    @Override
+    public int update(Product product) {
+        String sql = "UPDATE product SET sku = ?, name = ?, price = ?, fk_category = ? WHERE id = ?";
+        return jdbc.update(sql, product.getSku(), product.getName(), product.getPrice(), product.getFkCategory(), product.getId());
+    }
+
+    @Override
+    public int softDelete(Long id) {
+        String sql = "UPDATE product SET inactive = TRUE WHERE id = ?";
+        return jdbc.update(sql, id);
+    }
 }
