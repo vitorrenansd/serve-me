@@ -50,4 +50,36 @@ public class ProductRepository implements GenericRepository<Product, Long> {
         String sql = "UPDATE product SET inactive = TRUE WHERE id = ?";
         return jdbc.update(sql, id);
     }
+
+    // *******************************
+    //  Product-specific querys below
+    // *******************************
+
+    public Product findByIdIncludingInactive(Long id) { // Good for tests
+        String sql = "SELECT id, sku, name, price, fk_category, inactive FROM product WHERE id = ?";
+        return jdbc.queryForObject(sql, new BeanPropertyRowMapper<>(Product.class), id);
+    }
+
+    public List<Product> findByCategory(Long categoryId) {
+        String sql = "SELECT id, sku, name, price, fk_category FROM product WHERE fk_category = ? AND inactive = FALSE";
+        return jdbc.query(sql, new BeanPropertyRowMapper<>(Product.class), categoryId);
+    }
+
+    public List<Product> findByName(String keyword) {
+        String sql = "SELECT id, sku, name, price, fk_category FROM product WHERE name LIKE ? AND inactive = FALSE";
+        String searchPattern = "%" + keyword + "%"; // keyword anywhere in the name
+        return jdbc.query(sql, new BeanPropertyRowMapper<>(Product.class), searchPattern); 
+    }
+
+    public List<Product> findBySku(String keyword) {
+        String sql = "SELECT id, sku, name, price, fk_category FROM product WHERE sku LIKE ? AND inactive = FALSE";
+        String searchPattern = keyword + "%"; // needs to match SKU start keyword
+        return jdbc.query(sql, new BeanPropertyRowMapper<>(Product.class), searchPattern);
+    }
+
+    public boolean existsBySku(String sku) {
+        String sql = "SELECT COUNT(*) FROM product WHERE sku = ? AND inactive = FALSE";
+        Integer count = jdbc.queryForObject(sql, Integer.class, sku);
+        return count != null && count > 0; // Blocks creating another product with the same SKU
+    }
 }
