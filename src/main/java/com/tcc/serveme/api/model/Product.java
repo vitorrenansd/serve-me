@@ -10,11 +10,11 @@ public class Product {
     private Long fkCategory;
     private boolean inactive;
 
-    public Long getid() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setid(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
