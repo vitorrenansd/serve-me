@@ -8,16 +8,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.tcc.serveme.api.model.Product;
 
 @Repository
-public class ProductRepository {
-    private JdbcTemplate template;
+public class ProductRepository implements GenericRepository<Product, Long> {
+    private JdbcTemplate jdbc;
 
     public JdbcTemplate getTemplate() {
-        return template;
+        return jdbc;
     }
 
     @Autowired
-    public void setTemplate(JdbcTemplate template) {
-        this.template = template;
+    public void setTemplate(JdbcTemplate jdbc) {
+        this.jdbc = jdbc;
     }
 
     public Product findById(Long id) {
