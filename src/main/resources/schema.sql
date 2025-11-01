@@ -6,6 +6,7 @@ CREATE TABLE category (
 
 CREATE TABLE product (
     id IDENTITY PRIMARY KEY,
+    sku VARCHAR(20),
     name VARCHAR(40) NOT NULL,
     price NUMERIC(12,2) NOT NULL,
     fk_category INT,
