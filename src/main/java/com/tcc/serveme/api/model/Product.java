@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class Product {
     private Long id;
+    private String sku; // Its common SKU having letters and numbers
     private String name;
     private BigDecimal price;
     private Long fkCategory;
@@ -15,6 +16,14 @@ public class Product {
 
     public void setid(Long id) {
         this.id = id;
+    }
+
+    public String getSku() {
+        return this.sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 
     public String getName() {
