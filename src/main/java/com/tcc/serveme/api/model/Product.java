@@ -3,18 +3,27 @@ package com.tcc.serveme.api.model;
 import java.math.BigDecimal;
 
 public class Product {
-    private Long productId;
+    private Long id;
+    private String sku; // Its common SKU having letters and numbers
     private String name;
     private BigDecimal price;
-    private String category;
+    private Long fkCategory;
     private boolean inactive;
 
-    public Long getProductId() {
-        return this.productId;
+    public Long getId() {
+        return this.id;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSku() {
+        return this.sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 
     public String getName() {
@@ -33,17 +42,31 @@ public class Product {
         this.price = price;
     }
 
-    public String getCategory() {
-        return category;
+    public Long getFkCategory() {
+        return fkCategory;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setFkCategory(Long fkCategory) {
+        this.fkCategory = fkCategory;
+    }
+
+    public boolean getInactive() {
+        return this.inactive;
+    }
+
+    public void setInactive(boolean inactive) {
+        this.inactive = inactive;
     }
 
     @Override
     public String toString() {
-        return "Product{id=" + productId + ", name='" + name + '\'' +
-               ", price=" + price + ", inactive=" + inactive + '}';
+        return "Product{" +
+                "id=" + id +
+                ", sku='" + sku +
+                "', name='" + name + '\'' +
+                ", price=" + price +
+                ", fk_category=" + fkCategory +
+                ", inactive=" + inactive +
+                "}";
     }
 }

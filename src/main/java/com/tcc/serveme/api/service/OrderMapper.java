@@ -7,16 +7,16 @@ import java.util.List;
 
 public class OrderMapper {
 
-    public static Order toEntity(OrderRequest dto, List<Item> items) {
-        return new Order(
+    public static Orders toEntity(OrderRequest dto, List<OrderItem> items) {
+        return new Orders(
             dto.table(),
             dto.waiter(),
             items
         );
     }
 
-    public static Item toEntity(OrderItems dto, Product product) {
-        return new Item(
+    public static OrderItem toEntity(OrderItems dto, Product product) {
+        return new OrderItem(
             product, 
             dto.quantity(),
             dto.notes()
