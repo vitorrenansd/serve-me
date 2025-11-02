@@ -23,7 +23,7 @@ CREATE TABLE orders (
     waiter VARCHAR(20) NOT NULL,
     total NUMERIC(15,2) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    status VARCHAR(20) DEFAULT 'PENDING', -- PENDING, IN_PROGRESS, COMPLETED or CANCELED
+    status VARCHAR(20) DEFAULT 'PENDING' -- PENDING, IN_PROGRESS, COMPLETED or CANCELED
 );
 
 CREATE TABLE order_item (
@@ -32,7 +32,8 @@ CREATE TABLE order_item (
     fk_product INT NOT NULL,
     unit_price NUMERIC(15,2) NOT NULL CHECK (unit_price >= 0),
     quantity INT NOT NULL CHECK (quantity > 0),
-    total_price NUMERIC(15,2) NOT NULL CHECK (total_price >= 0)
+    total_price NUMERIC(15,2) NOT NULL CHECK (total_price >= 0),
+    notes VARCHAR(80),
     canceled BOOLEAN DEFAULT FALSE,
 
     CONSTRAINT fk_order_item_product
