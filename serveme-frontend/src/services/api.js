@@ -13,4 +13,15 @@ export const sendOrder = (orderData) => {
   return apiClient.post('/order/send', orderData);
 };
 
-// (Podemos adicionar uma função para buscar os produtos aqui depois)
+
+export const getProducts = () => {
+  return apiClient.get('/products');
+};
+
+export const getCategories = () => {
+  return apiClient.get('/categories');
+};
+
+export const createProduct = (productData) => {
+    return apiClient.post('/products', productData);
+};
