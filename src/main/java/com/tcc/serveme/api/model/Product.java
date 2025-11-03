@@ -1,11 +1,14 @@
 package com.tcc.serveme.api.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Product {
     private Long id;
     private String sku; // Its common SKU having letters and numbers
     private String name;
+    private String description;
+    private List<String> images;
     private BigDecimal price;
     private Long fkCategory;
     private boolean inactive;
@@ -58,12 +61,30 @@ public class Product {
         this.inactive = inactive;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", sku='" + sku +
-                "', name='" + name + '\'' +
+                "', name='" + name +
+                "', description='" + description +
+                "', images=" + images +
                 ", price=" + price +
                 ", fk_category=" + fkCategory +
                 ", inactive=" + inactive +
