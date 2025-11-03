@@ -1,48 +1,73 @@
 package com.tcc.serveme.api.repository;
 
-import java.util.List;
-import org.springframework.stereotype.Repository;
+import com.tcc.serveme.api.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import com.tcc.serveme.api.model.Product;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
+
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.util.List;
 
 @Repository
 public class ProductRepository implements GenericRepository<Product, Long> {
-    private JdbcTemplate jdbc;
-
-    public JdbcTemplate getTemplate() {
-        return jdbc;
-    }
+    private final JdbcTemplate jdbc;
+    private final ProductImageRepository productImageRepository;
 
     @Autowired
-    public void setTemplate(JdbcTemplate jdbc) {
+    public ProductRepository(JdbcTemplate jdbc, ProductImageRepository productImageRepository) {
         this.jdbc = jdbc;
+        this.productImageRepository = productImageRepository;
     }
 
     @Override
     public Product findById(Long id) {
-        String sql = "SELECT id, sku, name, price, fk_category FROM product WHERE id = ? AND inactive = FALSE";
-        List<Product> results = jdbc.query(sql, new BeanPropertyRowMapper<>(Product.class), id);
-        return results.isEmpty() ? null : results.get(0); // Return null if cant find a product
+        String sql = "SELECT id, sku, name, description, price, fk_category FROM product WHERE id = ? AND inactive = FALSE";
+        Product product = jdbc.queryForObject(sql, new BeanPropertyRowMapper<>(Product.class), id);
+        if (product != null) {
+            product.setImages(productImageRepository.findImagesByProductId(id));
+        }
+        return product;
     }
 
     @Override
     public List<Product> findAll() {
-        String sql = "SELECT id, sku, name, price, fk_category FROM product WHERE inactive = FALSE";
-        return jdbc.query(sql, new BeanPropertyRowMapper<>(Product.class));
+        String sql = "SELECT id, sku, name, description, price, fk_category FROM product WHERE inactive = FALSE";
+        List<Product> products = jdbc.query(sql, new BeanPropertyRowMapper<>(Product.class));
+        for (Product product : products) {
+            product.setImages(productImageRepository.findImagesByProductId(product.getId()));
+        }
+        return products;
     }
 
     @Override
-    public int save(Product product) {
-        String sql = "INSERT INTO product(sku, name, price, fk_category) VALUES (?, ?, ?, ?)";
-        return jdbc.update(sql, product.getSku(), product.getName(), product.getPrice(), product.getFkCategory());
+    public long save(Product product) {
+        String sql = "INSERT INTO product(sku, name, description, price, fk_category) VALUES (?, ?, ?, ?, ?)";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbc.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, product.getSku());
+            ps.setString(2, product.getName());
+            ps.setString(3, product.getDescription());
+            ps.setBigDecimal(4, product.getPrice());
+            ps.setLong(5, product.getFkCategory());
+            return ps;
+        }, keyHolder);
+
+        if (keyHolder.getKey() != null) {
+            return keyHolder.getKey().longValue();
+        } else {
+            throw new RuntimeException("Generated key is null");
+        }
     }
 
     @Override
     public int update(Product product) {
-        String sql = "UPDATE product SET sku = ?, name = ?, price = ?, fk_category = ? WHERE id = ?";
-        return jdbc.update(sql, product.getSku(), product.getName(), product.getPrice(), product.getFkCategory(), product.getId());
+        String sql = "UPDATE product SET sku = ?, name = ?, description = ?, price = ?, fk_category = ? WHERE id = ?";
+        return jdbc.update(sql, product.getSku(), product.getName(), product.getDescription(), product.getPrice(), product.getFkCategory(), product.getId());
     }
 
     @Override
@@ -56,23 +81,23 @@ public class ProductRepository implements GenericRepository<Product, Long> {
     // *******************************
 
     public Product findByIdIncludingInactive(Long id) { // Good for tests
-        String sql = "SELECT id, sku, name, price, fk_category, inactive FROM product WHERE id = ?";
+        String sql = "SELECT id, sku, name, description, price, fk_category, inactive FROM product WHERE id = ?";
         return jdbc.queryForObject(sql, new BeanPropertyRowMapper<>(Product.class), id);
     }
 
     public List<Product> findByCategory(Long categoryId) {
-        String sql = "SELECT id, sku, name, price, fk_category FROM product WHERE fk_category = ? AND inactive = FALSE";
+        String sql = "SELECT id, sku, name, description, price, fk_category FROM product WHERE fk_category = ? AND inactive = FALSE";
         return jdbc.query(sql, new BeanPropertyRowMapper<>(Product.class), categoryId);
     }
 
     public List<Product> findByName(String keyword) {
-        String sql = "SELECT id, sku, name, price, fk_category FROM product WHERE name LIKE ? AND inactive = FALSE";
+        String sql = "SELECT id, sku, name, description, price, fk_category FROM product WHERE name LIKE ? AND inactive = FALSE";
         String searchPattern = "%" + keyword + "%"; // keyword anywhere in the name
-        return jdbc.query(sql, new BeanPropertyRowMapper<>(Product.class), searchPattern); 
+        return jdbc.query(sql, new BeanPropertyRowMapper<>(Product.class), searchPattern);
     }
 
     public List<Product> findBySku(String keyword) {
-        String sql = "SELECT id, sku, name, price, fk_category FROM product WHERE sku LIKE ? AND inactive = FALSE";
+        String sql = "SELECT id, sku, name, description, price, fk_category FROM product WHERE sku LIKE ? AND inactive = FALSE";
         String searchPattern = keyword + "%"; // needs to match SKU start keyword
         return jdbc.query(sql, new BeanPropertyRowMapper<>(Product.class), searchPattern);
     }

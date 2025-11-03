@@ -8,6 +8,7 @@ CREATE TABLE product (
     id IDENTITY PRIMARY KEY,
     sku VARCHAR(20),
     name VARCHAR(40) NOT NULL,
+    description VARCHAR(255),
     price NUMERIC(15,2) NOT NULL,
     fk_category INT NOT NULL,
     inactive BOOLEAN DEFAULT FALSE,
@@ -15,6 +16,15 @@ CREATE TABLE product (
     CONSTRAINT fk_product_category
         FOREIGN KEY (fk_category)
         REFERENCES category(id)
+);
+
+CREATE TABLE product_image (
+    id IDENTITY PRIMARY KEY,
+    fk_product INT NOT NULL,
+    url VARCHAR(255) NOT NULL,
+    CONSTRAINT fk_product_image_product
+        FOREIGN KEY (fk_product)
+        REFERENCES product(id)
 );
 
 CREATE TABLE orders (

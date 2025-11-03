@@ -8,7 +8,7 @@ public interface GenericRepository<T, ID> {
 
     List<T> findAll();
 
-    int save(T entity);
+    long save(T entity);
 
     int update(T entity);
 
